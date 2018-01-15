@@ -1,0 +1,87 @@
+<!-- -->
+<ion-header>
+  <script type="text/javascript" src="cordova.js"></script>
+  <ion-navbar color="primary">
+    <ion-title>Car Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="checkout-car common-bg">
+  <!--trip information-->
+  <div class="checkout-info car-info card round">
+    <!--<div class="car-image border-bottom" [ngStyle]="{'background-image': 'url(' + search.imgPath + ')'}"></div> -->
+    <div class="car-image border-bottom" >
+        <img src="{{ search.imgPath }}" class="searchimage" />
+    </div>
+    
+    <ion-grid padding>
+      <ion-row>
+        <ion-col width-66>
+          <h5 ion-text color="dark" class="bold">{{ search.model }}</h5>
+          <span *ngFor="let city of cityList">
+          <p *ngIf=" city.id == searchDetails.leavingFrom" >  {{city.name}}  </p>
+          <p *ngIf=" city.id == searchDetails.goingTo" >  {{city.name}}  </p>  
+        </span>
+          <div>
+            <h6 ion-text color="primary">{{ searchDetails.tripType }}</h6>
+          </div>
+          <div margin-top>
+            <span ion-text>{{ searchDetails.date }} - {{ searchDetails.returnDate }}</span>
+            <br/>
+            <span ion-text>{{ userDetails.name }}</span>
+            <span ion-text>{{ userDetails.mobileno }}</span>
+            <p *ngIf=" searchDetails.tripType=='roundtrip' " > ₹ {{ search.returnPrice}}  </p>
+            <p *ngIf=" searchDetails.tripType=='oneway'" > ₹ {{ search.price}}  </p>
+            <p *ngIf=" searchDetails.tripType=='dailyRent'" > ₹ {{ search.vPrice*300}}  </p>
+           
+          </div>
+          <div margin-top>
+
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <span ion-text color="dark">Total with Tax</span>
+          <p *ngIf=" searchDetails.tripType=='roundtrip' " > ₹ {{ search.returnPrice}}  </p>
+          <p *ngIf=" searchDetails.tripType=='oneway'" > ₹ {{ search.price}}  </p>
+          <p *ngIf=" searchDetails.tripType=='dailyRent'" > ₹ {{ search.vPrice*300}}  </p>
+          
+          <span ion-text color="dark">Due at pickup</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!--more info-->
+  <!-- <div class="card round" margin-top>
+    <ion-item class="no-border">
+      <ion-icon name="contact" item-left color="primary"></ion-icon>
+      <div>
+        <span class="bold" ion-text color="primary">Guest Details</span>
+        <br/>
+        <span ion-text>Enter your information</span>
+      </div>
+    </ion-item>
+  </div>
+-->
+  <!--payment info-->
+  <!--
+  <div class="card round" margin-top>
+    <ion-item class="no-border">
+      <ion-icon name="ios-card" item-left color="primary"></ion-icon>
+      <div>
+        <span class="bold" ion-text color="primary">Payment method</span>
+        <br/>
+        <span ion-text>Enter credit card</span>
+      </div>
+    </ion-item>
+  </div> -->
+
+  <!--submit button-->
+  <button ion-button class="round" color="primary" margin-top full tappable (click)="payudetails()">PAY NOW</button>
+ 
+
+  
+
+</ion-content>

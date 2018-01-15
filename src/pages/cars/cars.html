@@ -1,0 +1,63 @@
+<!--  -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Cars</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="cars">
+  <!--  -->
+  <ion-toolbar padding color="secondary">
+    <p ion-text no-margin class="text-white">
+      <strong>4</strong> results found!
+    </p>
+  </ion-toolbar>
+
+  <!--list of car shops-->
+ <!-- <div class="car card border-bottom" *ngFor="let shop of shops" tappable (click)="viewDetail(shop.id)">
+    <div class="background" [ngStyle]="{'background-image': 'url(' + shop.thumb + ')'}">
+      <div class="background-filter rlt">
+        <div class="align-bottom" padding-left padding-right>
+          <h6 class="pull-left" ion-text class="text-white">{{ shop.name }}</h6>
+          <h6 class="pull-right" ion-text class="text-white">Daily {{ shop.price | currency:'USD':true }}</h6>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <div padding class="detail-bg">
+      <ion-icon name="person" color="primary"></ion-icon>
+      <span ion-text margin-right>{{ shop.passengers_from }}-{{ shop.passengers_to }}</span>
+      <ion-icon name="md-briefcase" color="primary"></ion-icon>
+      <span ion-text>{{ shop.luggage }}</span>
+      <span class="pull-right" ion-text color="primary">Total <strong>{{ shop.price * numDays | currency:'USD':true }}</strong></span>
+    </div>
+  </div> -->
+
+  <div class="car card border-bottom" *ngFor="let search of searchList" tappable (click)="viewDetail(search)">
+    <!--<div class="background" [ngStyle]="{'background-image': 'url('+ search.imgPath +')'}"> -->
+    <div class="background"  >
+        <img src="{{ search.imgPath }}" class="searchimage" />
+      <div class="background-filter rlt">
+        <div class="align-bottom" padding-left padding-right>
+          <h6 class="pull-left" ion-text class="text-white">{{ search.model }}</h6>
+          <h6 class="pull-right" ion-text class="text-white">{{ search.lFrom }} - {{ search.to }}</h6>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <div padding class="detail-bg">
+      <ion-icon name="person" color="primary"></ion-icon>
+      <!-- <span ion-text margin-right>{{ search.lfrom }}-{{ search.to }}</span> -->
+      <ion-icon name="md-briefcase" color="primary"></ion-icon>
+      <span ion-text>{{ search.capcity }}</span>
+      <span class="pull-right" ion-text color="primary">Total <strong> 
+      <p *ngIf=" searchDetails.tripType=='roundtrip'" >₹  {{ search.returnPrice}}  </p>
+      <p *ngIf=" searchDetails.tripType=='oneway'" >₹  {{ search.price}}  </p>
+      <p *ngIf=" searchDetails.tripType=='dailyRent'" >₹  {{ search.vPrice*300}}  </p>
+      </strong></span>
+    </div>
+  </div>
+</ion-content>

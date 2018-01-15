@@ -1,0 +1,126 @@
+<!--
+  Generated template for the ViewmorepackagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<!-- 
+  <ion-navbar>
+    <ion-title>viewmorepackage</ion-title>
+  </ion-navbar> -->
+  <ion-navbar color="primary">
+      <span *ngFor="let packagetitle of packagetitleList"  >
+      <ion-title>{{ packagetitle.title }}</ion-title>
+    </span>
+  </ion-navbar>
+  
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-slides class="to-top" pager>
+        <ion-slide>
+        <img src="assets/img/tiru.jpg" class="searchimage"/>
+        </ion-slide>
+      </ion-slides>
+
+      <div class="border-bottom" padding >
+          <span ion-text color="dark" class="bold"> {{packageinfo.name}} </span>
+          <span ion-text color="dark" class="bold"> {{packageinfo.code}} </span>
+          <ul class="highlight">
+            <li>
+                <span ion-text color="dark" *ngFor="let startPoint of packageinfo.startPoint">
+                    <span ion-text color="dark" *ngFor="let locationinfo of locationinfoList">
+                        <span *ngIf="startPoint.name == locationinfo.id">
+               <p >Pick up Point: {{locationinfo.name}} </p>
+               <!-- <ion-input type="hidden" name="startPoint" [(ngModel)]="startPoint" value="locationinfo.name" ></ion-input> -->
+              </span>
+              </span>
+            </span>
+              <!-- <span ion-text color="primary"> </span> -->
+            </li>
+            <li >
+              <span *ngIf="packageinfo.endPoint?.length > 0">
+                <span ion-text color="dark" *ngFor="let endPoint of packageinfo.endPoint">
+                    <span ion-text color="dark" *ngFor="let locationinfo of locationinfoList">
+                        <span *ngIf="endPoint.name == locationinfo.id" >
+               <p id="endp1">Places to Visit : {{locationinfo.name}} </p>
+               <!-- <ion-input type="text" name="endPoint[]" [(ngModel)]="endPoint[locationinfo.id]" value="locationinfo.name" ></ion-input> -->
+                </span>
+                
+              </span>
+              </span>
+            </span><!-- <span ion-text color="primary"> </span> -->
+            <span *ngIf="packageinfo.endPoint2?.length > 0">
+                <span ion-text color="dark" *ngFor="let endPoint2 of packageinfo.endPoint2">
+                    <span ion-text color="dark" *ngFor="let locationinfo of locationinfoList">
+                        <span *ngIf="endPoint2.name == locationinfo.id">
+               <p>Drop Point: {{locationinfo.name}} </p> </span>
+               <!-- <ion-input type="hidden" name="endPoint2" [(ngModel)]="endPoint2" value="locationinfo.name" ></ion-input> -->
+              </span>
+              </span>
+            </span><!-- <span ion-text color="primary"> </span> -->
+            <ion-row>
+           
+          </ion-row>
+
+          <ion-row>
+              <span ion-text color="dark" class="bold"> Choose your package Vehicle </span>
+          <span *ngFor="let price of packageinfo.price;let i = index" >
+           
+            
+                <ion-col col-4 col-sm-4 col-xs-4 col-md-4 col-lg-4>
+                  <span ion-text color="dark" class="bold"> {{price.name}} </span><br>
+                  
+                  
+
+                  <ion-icon ios="ios-car" md="md-car"></ion-icon>
+                 
+                
+                <p (click)="selectPrice(packageinfo.id,price.price,i)">{{price.price }}</p>
+                  </ion-col>
+              
+              
+              </span>
+            </ion-row>    
+            <span ion-text color="dark" class="bold" id="price{{packageinfo.id}}"> Selected Package Price:{{packagepricevalue}} </span><br>        
+            </li>
+           
+            
+          </ul>
+        </div> 
+
+        <form (ngSubmit)="bookpackage()" #registerForm="ngForm">
+            <ion-row> 
+            <ion-col >
+              <ion-item class="border-bottom">
+                  <ion-icon name="md-calendar" color="primary" item-left></ion-icon>
+                  <ion-label floating>Date</ion-label>
+              <ion-datetime name="date" displayFormat="DD/MM/YYYY" [(ngModel)]="bookdetails.date"></ion-datetime>
+              </ion-item>
+              </ion-col>
+             </ion-row>
+             <ion-row>  
+              <ion-col >
+            <ion-item >
+                    <ion-label floating color="primary">No of Adult</ion-label>
+                   <ion-input type="text" name="numAdult" [(ngModel)]="bookdetails.numAdult" ></ion-input>
+            </ion-item>
+            </ion-col>
+            </ion-row>
+            <ion-row> 
+            <ion-col >
+            <ion-item>
+            <ion-label floating color="primary">Prefer Timings</ion-label>
+                   <ion-input type="text" name="preferTime" [(ngModel)]="bookdetails.preferTime" ></ion-input>
+            </ion-item>
+          </ion-col>
+          <button ion-button class="pull-right" type="submit" color="secondary" tappable (click)="bookpackage(packageinfo)">Book Now </button>
+        </ion-row>
+        </form>
+
+
+</ion-content>

@@ -1,0 +1,144 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <span *ngFor="let packagetitle of packagetitleList"  >
+    <ion-title>{{ packagetitle.title }}</ion-title>
+  </span>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class=" common-bg">
+  <!--slides-->
+  <ion-slides class="to-top" pager>
+    <ion-slide *ngFor="let image of trip.images">
+      <!--<img src="{{ image }}" alt="">-->
+      <img src="assets/img/hotel.jpg" class="searchimage" />
+    </ion-slide>
+  </ion-slides>
+
+  <!--services-->
+  <ion-grid class="border-bottom detail-bg">
+    <ion-row>
+      <ion-col text-center>
+        <div class="text-sm">
+          <div>
+            <ion-icon name="time" color="primary"></ion-icon>
+            <span ion-text color="secondary">{{ trip.time }}</span>
+            <ion-icon name="checkbox-outline" margin-left color="primary" *ngIf="trip.free_cancellation"></ion-icon>
+            <span ion-text color="secondary" *ngIf="trip.free_cancellation">Free cancellation</span>
+            <ion-icon name="list-box" margin-left color="primary" *ngIf="trip.electric_voucher"></ion-icon>
+            <span ion-text color="secondary" *ngIf="trip.electric_voucher">Electronic voucher</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--high light-->
+  <div class="border-bottom" padding *ngFor="let packageinfo of packagesvalueinfoList">
+    <span ion-text color="dark" class="bold"> {{packageinfo.name}} </span>
+    <span ion-text color="dark" class="bold"> {{packageinfo.code}} </span>
+    <ul class="highlight">
+      <li >
+          <span ion-text color="dark" *ngFor="let startPoint of packageinfo.startPoint">
+              <span ion-text color="dark" *ngFor="let locationinfo of locationinfoList">
+                  <span *ngIf="startPoint.name == locationinfo.id">
+         <p>Pick up Point: {{locationinfo.name}} </p> </span>
+        </span>
+      </span>
+        <!-- <span ion-text color="primary"> </span> -->
+      </li>
+      <li >
+        <span *ngIf="packageinfo.endPoint?.length > 0" then endp1 else places1>
+          <span ion-text color="dark" *ngFor="let endPoint of packageinfo.endPoint">
+              <span ion-text color="dark" *ngFor="let locationinfo of locationinfoList">
+                  <span *ngIf="endPoint.name == locationinfo.id" >
+         <p id="endp1">Places to Visit : {{locationinfo.name}} </p>
+         
+          </span>
+          
+        </span>
+        </span>
+      </span><!-- <span ion-text color="primary"> </span> -->
+      <span *ngIf="packageinfo.endPoint2?.length > 0">
+          <span ion-text color="dark" *ngFor="let endPoint2 of packageinfo.endPoint2">
+              <span ion-text color="dark" *ngFor="let locationinfo of locationinfoList">
+                  <span *ngIf="endPoint2.name == locationinfo.id">
+         <p>Drop Point: {{locationinfo.name}} </p> </span>
+        </span>
+        </span>
+      </span><!-- <span ion-text color="primary"> </span> -->
+      <ion-row>
+     
+    </ion-row>
+      <span ion-text color="dark" class="bold" id="price{{packageinfo.id}}"> Starting From:{{packageinfo.price[0].price}} </span><br>
+      
+      </li>
+      <button ion-button class="pull-right" type="submit" color="secondary" tappable (click)="dobookingnow(packageinfo)">Select the Package </button>
+      
+    </ul>
+  </div> 
+  
+      
+     
+
+  <!--booking form-->
+  <div class="booking-form card round" margin>
+    <div class="border-bottom" padding>
+      <h5>{{ trip.sub_name }}</h5>
+
+      <!--choose guest-->
+      <ion-grid class="filters" no-padding margin-top>
+        <ion-row>
+          <ion-col class="adult" width-70>
+            <span ion-text color="primary"><strong>{{ trip.price_adult | currency:'USD':true }}</strong> Adults</span>
+          </ion-col>
+          <ion-col width-10 text-center>
+            <ion-icon name="remove-circle" class="text-2x" tappable (click)="minusAdult()" [hidden]="adults < 2"
+                      color="secondary"></ion-icon>
+          </ion-col>
+          <ion-col width-10 text-center>{{ adults }}</ion-col>
+          <ion-col width-10 text-center>
+            <ion-icon name="add-circle" class="text-2x" tappable (click)="plusAdult()" color="secondary"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row margin-top>
+          <ion-col width-70>
+            <span ion-text color="primary"><strong>{{ trip.price_child | currency:'USD':true }}</strong> Child (0-12 years)</span>
+          </ion-col>
+          <ion-col width-10 text-center>
+            <ion-icon name="remove-circle" class="text-2x" tappable (click)="minusChildren()" [hidden]="children < 1"
+                      color="secondary"></ion-icon>
+          </ion-col>
+          <ion-col width-10 text-center>{{ children }}</ion-col>
+          <ion-col width-10 text-center>
+            <ion-icon name="add-circle" class="text-2x" tappable (click)="plusChildren()" color="secondary"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div padding class="form-bottom">
+<!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
+      <!--booking button-->
+      <button ion-button class="pull-right" color="secondary" tappable (click)="checkout()">Book Now {{ adults * trip.price_adult +
+        children * trip.price_child | currency:'USD':true }}
+      </button>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <!--description-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">DESCRIPTION</span>
+    <p ion-text>{{ trip.description }}</p>
+  </div>
+
+  <!--address-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">LOCATION</span>
+    <p ion-text>{{ trip.location }}</p>
+  </div>
+</ion-content>

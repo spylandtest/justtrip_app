@@ -1,0 +1,51 @@
+<!--
+  Generated template for the BikesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>bikes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="cars">
+    <!--  -->
+    <ion-toolbar padding color="secondary">
+      <p ion-text no-margin class="text-white">
+        <strong>4</strong> results found!
+      </p>
+    </ion-toolbar>
+  
+   
+  
+    <div class="car card border-bottom" *ngFor="let search of bikesearchList" tappable (click)="bikeviewDetail(search)">
+      <!--<div class="background" [ngStyle]="{'background-image': 'url('+ search.imgPath +')'}"> -->
+      <div class="background"  >
+          <img src="{{ search.imgPath }}" class="searchimage" />
+               <div class="background-filter rlt">
+          <div class="align-bottom" padding-left padding-right>
+            <h6 class="pull-left" ion-text class="text-white">{{ search.title }}</h6>
+            <h6 class="pull-right" ion-text class="text-white">{{ searchbikevalues.pickupdate | date: 'dd/MM/yyyy H:mm' }} - {{ searchbikevalues.dropdate | date: 'dd/MM/yyyy H:mm' }}</h6>
+           
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div padding class="detail-bg">
+        <!-- <ion-icon name="person" color="primary"></ion-icon> -->
+        <!-- <span ion-text margin-right>{{ search.lfrom }}-{{ search.to }}</span> -->
+        <!-- <ion-icon name="md-briefcase" color="primary"></ion-icon> -->
+        <span ion-text>{{ search.location }}</span>
+        <span class="pull-right" ion-text color="primary">Total 
+          <strong>  
+        
+        <p>₹  {{ (search.dayrent*dateIntval)+(search.statingPrice*timeIntval) }}  </p>
+       
+        </strong></span>
+      </div>
+    </div>
+  </ion-content>

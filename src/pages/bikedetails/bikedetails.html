@@ -1,0 +1,57 @@
+<!--
+  Generated template for the BikedetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>bikedetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding class="checkout-car common-bg">
+    <!--trip information-->
+    <div class="checkout-info car-info card round">
+      <!--<div class="car-image border-bottom" [ngStyle]="{'background-image': 'url(' + search.imgPath + ')'}"></div> -->
+      <div class="car-image border-bottom" >
+          <img src="{{ search.imgPath }}" class="searchimage" />
+      </div>
+      
+      <ion-grid padding>
+        <ion-row>
+          <ion-col width-66>
+            <h5 ion-text color="dark" class="bold">{{ search.title }}</h5>
+            <span *ngFor="let city of cityList">
+            <p>  {{search.location}}  </p>
+           
+          </span>
+            <div>
+              
+              <!-- <h6 ion-text color="primary">{{ search.dayrent * leftdays}} </h6> -->
+            </div>
+            <div margin-top>
+              <span ion-text>{{ searchbikevalues.pickupdate }} - {{ searchbikevalues.dropdate }}</span>
+              <br/>
+            
+                                        
+            </div>
+            <div margin-top>
+  
+            </div>
+          </ion-col>
+         
+        </ion-row>
+      </ion-grid>
+    </div>
+  
+  <button ion-button class="round" color="primary" margin-top full tappable (click)="bikeuseretails()">PAY NOW</button>
+   
+  
+    
+  
+  </ion-content>

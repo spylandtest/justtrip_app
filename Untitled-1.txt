@@ -1,0 +1,201 @@
+import {Component} from "@angular/core";
+//import {NavController, LoadingController, ToastController} from "ionic-angular";
+import { NavController, AlertController, Loading, LoadingController,NavParams,IonicPage } from 'ionic-angular';
+import {CarService} from "../../providers/car-service";
+import {HomePage} from "../home/home";
+import { InAppBrowser, InAppBrowserObject, InAppBrowserOptions, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+import { File } from '@ionic-native/file';
+import { PaysuccessPage } from "../paysuccess/paysuccess";
+declare var cordova: any;
+//declare var RazorpayCheckout: any;
+declare var RazorpayCheckout: any;
+
+
+
+@Component({
+  selector: 'page-checkout-car',
+  templateUrl: 'checkout-car.html',
+providers: [InAppBrowser],
+
+})
+export class CheckoutCarPage {
+  url;
+  search;
+  searchDetails;
+  cityList;
+  userDetails;
+  paymentList;
+  loading: Loading;
+  createSuccess = false;
+  inAppBrowserRef;
+
+
+  
+  
+  // car shop information
+ // public shop: any;
+  // car info
+  //public car: any;
+  // date from
+  //public dateFrom = new Date();
+  // date to
+  //public dateTo = new Date();
+  options = {
+    description: 'Credits towards consultation',
+    image: 'https://i.imgur.com/3g7nmJC.png',
+    currency: 'INR',
+    key: 'rzp_test_vWodBlf7S4iRz8',
+   // order_id: 'pay_JT031115R7R6',
+    amount: '5000',
+    name: 'Shiva',
+    prefill: {
+      email: 'mmshivukumar@gmail.com',
+      contact: '8095898687',
+      name: 'shiva M'
+    },
+    theme: {
+      color: '#F37254'
+    },
+    modal: {
+      ondismiss: function() {
+        alert('dismissed')
+      }
+    }
+  }
+
+  constructor(public nav: NavController, public navParams: NavParams,private alertCtrl: AlertController, private loadingCtrl: LoadingController,public iab: InAppBrowser) {
+    // set sample data
+    this.search = navParams.get('search');
+    this.searchDetails = navParams.get('searchDetails');
+    var searchDetails = JSON.stringify(searchDetails); 
+    this.cityList = navParams.get('cityList');
+    this.userDetails = navParams.get('userDetails');
+    var userDetails = JSON.stringify(userDetails); 
+    this.paymentList = navParams.get('paymentList');
+   this.url = this.paymentList.url;
+  //  var inAppBrowserRef;
+   // this.shop = carService.getItem(1);
+    //this.car = this.shop.cars[0];
+    RazorpayCheckout.on('payment.success', this.successCallback)
+    RazorpayCheckout.on('payment.cancel', this.cancelCallback)
+    
+  }
+
+  successCallback(payment_id,nav) {
+  // alert('payment_id: ' + payment_id);
+  this.nav.push(HomePage,{payment_id: payment_id});
+    
+   // this.nav.push(PaysuccessPage,{payment_id: payment_id,paymentList: this.paymentList,searchDetails: this.searchDetails,cityList: this.cityList,userDetails: this.userDetails});
+    
+  };
+  cancelCallback(error) {
+    alert(error.description + ' (Error ' + error.code + ')');
+  };
+
+  public payudetails(){
+    RazorpayCheckout.open(this.options, this.successCallback, this.cancelCallback);
+  }
+
+
+  /*
+  payudetails(){
+    this.iab.open(this.url, ‘_self’, ‘location=yes’);
+    }*/
+/* public payudetails() {
+    
+    // window.open(this.url, '_self', 'location=no');
+     const browser = this.iab.create(this.url,'_self',{location:'no'}); 
+    
+    }*/
+    
+   /* 
+    public payudetails(url) {
+      
+      
+     console.log(options);
+
+     
+
+     var successCallback = function(success) {
+      alert('payment_id: ' + success.razorpay_payment_id)
+   //   var orderId = success.razorpay_order_id
+      var signature = success.razorpay_signature
+    }
+    
+    var cancelCallback = function(error) {
+      alert(error.description + ' (Error '+error.code+')')
+    }
+    
+    RazorpayCheckout.on('payment.success', successCallback)
+    RazorpayCheckout.on('payment.cancel', cancelCallback)
+    RazorpayCheckout.open(options)
+
+}*/
+    
+      
+ /*     public loadStartCallBack() {
+        alert('Loading close: ' + this.url);
+       // sessionStorage.setItem( 'redURL',this.url);
+      
+         // $('#status-message').text("loading please wait ...");
+      
+      } */
+    
+/*
+    public payudetails()
+    {
+      var ref = cordova.InAppBrowser.open(this.url, '_self', 'location=yes');
+    } */
+
+    showLoading() {
+      this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+     });
+      this.loading.present();
+    }
+    
+    showPopup(title, text) {
+      let alert = this.alertCtrl.create({
+        title: title,
+        subTitle: text,
+        buttons: [
+         {
+           text: 'OK',
+           handler: data => {
+             if (this.createSuccess) {
+               this.nav.popToRoot();
+             }
+           }
+         }
+       ]
+      });
+      alert.present();
+    }
+
+  // process send button
+  /* send() {
+    // send booking info
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    }); */
+    // show message
+ /*   let toast = this.toastCtrl.create({
+      showCloseButton: true,
+      cssClass: 'profile-bg',
+      message: 'Car Rent Success!',
+      duration: 3000,
+      position: 'bottom'
+    });*/
+/*
+    loader.present();
+
+    setTimeout(() => {
+      loader.dismiss();
+      //toast.present();
+      // back to home page
+      this.nav.setRoot(HomePage);
+    }, 3000)
+  }*/
+
+
+}

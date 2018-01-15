@@ -1,0 +1,14 @@
+{
+  "name": "ionBooking",
+  "app_id": "29adccd3",
+   "proxies": [
+    {
+      "path": "/api/",
+      "proxyUrl": "http://test.justtrip.in/api"
+    }
+  ],
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

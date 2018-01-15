@@ -1,0 +1,106 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Activity Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="checkout-trip common-bg">
+  <!--trip information-->
+  <div class="trip-info card round">
+    <div class="trip-image border-bottom" [ngStyle]="{'background-image': 'url(' + trip.thumb + ')'}"></div>
+    <ion-grid padding>
+      <ion-row>
+        <ion-col width-66>
+            <span *ngFor="let packagetitle of packagetitleList"  >
+                      
+          <h5 ion-text color="primary">{{ packagetitle.title }}</h5>
+        </span>
+          <div>
+              <!-- <span class="bold">{{ trip.sub_name }}</span> -->
+            <br/>
+            <span ion-text color="dark">{{ bookdetails.numAdult }} Adults</span>
+          </div>
+          <div margin-top>
+            <span ion-text color="dark">{{ bookdetails.date | date: 'EEE, MMM dd' }}</span>
+            <br/>
+            <!-- <span ion-text>{{ trip.location }}</span> -->
+          </div>
+          <div margin-top>
+            <ion-icon name="checkmark" class="text-green" *ngIf="trip.free_cancellation"></ion-icon>
+            <span ion-text *ngIf="trip.free_cancellation">Free cancellation</span>
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <span ion-text>Total with Tax</span>
+          <!-- <h5 ion-text color="primary" class="bold" no-margin>{{ selectedpackagepriceinfo.price * adults | currency:'USD':true }}</h5> -->
+          <h5 ion-text color="primary" class="bold" no-margin>{{ selectedpackagepriceinfo.price }}</h5>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!--more info-->
+  <div class="card round" margin-top>
+    <ion-item class="no-border">
+      <ion-icon name="contact" item-left color="primary"></ion-icon>
+      <div>
+        <span class="bold" ion-text color="primary">Guest Details</span>
+        <br/>
+      </div>
+    </ion-item>   
+    <div>
+     
+        <form  class="list-form" #packageuserDetailsform="ngForm">
+            <ion-item>
+              <ion-label floating>
+                <ion-icon name="person" item-start class="text-white"></ion-icon>
+                Your Name
+              </ion-label>
+            <!--  <ion-input type="text" formControlName="fullName"></ion-input> -->
+              <ion-input type="text" name="name" [(ngModel)]="packageuserDetails.name" required></ion-input>
+              
+            </ion-item>
+           <!-- <p ion-text color="danger" class="text-1x has-error" *ngIf="onRegisterForm.get('fullName').touched && onRegisterForm.get('fullName').hasError('required')">This field is required</p> -->
+      
+            <ion-item>
+              <ion-label floating>
+                <ion-icon name="mail" item-start class="text-white"></ion-icon>
+                Email
+              </ion-label>
+      
+                  <ion-input type="text" name="email" [(ngModel)]="packageuserDetails.email" required></ion-input>
+            </ion-item>
+           
+           <ion-item>
+            <ion-label floating>
+              <ion-icon name="person" item-start class="text-white"></ion-icon>
+              Mobile Number
+            </ion-label>
+          <!--  <ion-input type="text" formControlName="fullName"></ion-input> -->
+          <ion-input type="text" name="mobileno" [(ngModel)]="packageuserDetails.mobileno" required></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label>Select Payment Mode </ion-label>
+          <ion-select name="contributorId" [(ngModel)]="packageuserDetails.paymentmode" [compareWith]="">
+              <ion-option *ngFor="let author of authorList" [value]="author.id">Payment Mode</ion-option>
+              <ion-option [value]="30"> 30 % payment </ion-option>
+              <ion-option [value]="advance"> 50% payment </ion-option>
+            
+           </ion-select>
+          </ion-item>
+            
+          </form>
+
+
+      </div>
+    
+  </div>
+
+  <!--payment info-->
+ 
+  <button ion-button class="round" color="primary" margin-top full tappable (click)="packagebookingView(packageinfo)">Book Now</button>
+</ion-content>
