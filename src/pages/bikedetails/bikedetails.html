@@ -16,6 +16,7 @@
 
 <ion-content padding class="checkout-car common-bg">
     <!--trip information-->
+    <form  class="list-form" #packageuserDetailsform="ngForm">
     <div class="checkout-info car-info card round">
       <!--<div class="car-image border-bottom" [ngStyle]="{'background-image': 'url(' + search.imgPath + ')'}"></div> -->
       <div class="car-image border-bottom" >
@@ -41,6 +42,11 @@
                                         
             </div>
             <div margin-top>
+              <span ion-text> {{ finalbikeprice }}</span>
+              <br/>
+                                       
+            </div>
+            <div margin-top>
   
             </div>
           </ion-col>
@@ -48,8 +54,8 @@
         </ion-row>
       </ion-grid>
     </div>
-  
-  <button ion-button class="round" color="primary" margin-top full tappable (click)="bikeuseretails()">PAY NOW</button>
+  </form>
+  <button ion-button class="round" color="primary" margin-top full tappable (click)="bikeuseretails()">Confirmdetails booking</button>
    
   
     

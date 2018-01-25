@@ -45,7 +45,7 @@ import {PackageconfirmbookingPage} from "../pages/packageconfirmbooking/packagec
 import {PackagepaymentmodePage} from "../pages/packagepaymentmode/packagepaymentmode";
 import {BikesPage} from "../pages/bikes/bikes";
 import {BikedetailsPage} from "../pages/bikedetails/bikedetails";
-
+import {BikeuserdetailsPage} from "../pages/bikeuserdetails/bikeuserdetails";
 
 
 import { LocationserviceProvider } from '../providers/locationservice/locationservice';
@@ -99,7 +99,8 @@ import { SearchbikeserviceProvider } from '../providers/searchbikeservice/search
     PackageconfirmbookingPage,
     PackagepaymentmodePage,
     BikesPage,
-    BikedetailsPage
+    BikedetailsPage,
+    BikeuserdetailsPage
     
   ],
   imports: [
@@ -144,7 +145,8 @@ import { SearchbikeserviceProvider } from '../providers/searchbikeservice/search
     PackageconfirmbookingPage,
     PackagepaymentmodePage,
     BikesPage,
-    BikedetailsPage
+    BikedetailsPage,
+    BikeuserdetailsPage
   ],
   providers: [
     StatusBar,
