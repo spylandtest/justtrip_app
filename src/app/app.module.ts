@@ -46,6 +46,7 @@ import {PackagepaymentmodePage} from "../pages/packagepaymentmode/packagepayment
 import {BikesPage} from "../pages/bikes/bikes";
 import {BikedetailsPage} from "../pages/bikedetails/bikedetails";
 import {BikeuserdetailsPage} from "../pages/bikeuserdetails/bikeuserdetails";
+import {CheckoutBikePage} from "../pages/checkout-bike/checkout-bike";
 
 
 import { LocationserviceProvider } from '../providers/locationservice/locationservice';
@@ -60,6 +61,8 @@ import { PaymentpackageserviceProvider } from '../providers/paymentpackageservic
 import { LoginserviceProvider } from '../providers/loginservice/loginservice';
 import { AuthserviceProvider } from '../providers/authservice/authservice';
 import { SearchbikeserviceProvider } from '../providers/searchbikeservice/searchbikeservice';
+import { BikebookingserviceProvider } from '../providers/bikebookingservice/bikebookingservice';
+import { BikepaymentserviceProvider } from '../providers/bikepaymentservice/bikepaymentservice';
 
 // import services
 // end import services
@@ -100,7 +103,8 @@ import { SearchbikeserviceProvider } from '../providers/searchbikeservice/search
     PackagepaymentmodePage,
     BikesPage,
     BikedetailsPage,
-    BikeuserdetailsPage
+    BikeuserdetailsPage,
+    CheckoutBikePage
     
   ],
   imports: [
@@ -146,7 +150,8 @@ import { SearchbikeserviceProvider } from '../providers/searchbikeservice/search
     PackagepaymentmodePage,
     BikesPage,
     BikedetailsPage,
-    BikeuserdetailsPage
+    BikeuserdetailsPage,
+    CheckoutBikePage
   ],
   providers: [
     StatusBar,
@@ -171,7 +176,9 @@ import { SearchbikeserviceProvider } from '../providers/searchbikeservice/search
     PaymentpackageserviceProvider,
     LoginserviceProvider,
     AuthserviceProvider,
-    SearchbikeserviceProvider
+    SearchbikeserviceProvider,
+    BikebookingserviceProvider,
+    BikepaymentserviceProvider
   ]
 })
 

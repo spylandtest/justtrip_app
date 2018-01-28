@@ -59,12 +59,12 @@
     <ion-input type="text" name="mobileno" [(ngModel)]="bikeuserDetails.mobileno" required></ion-input>
     </ion-item>
    <!-- <p ion-text color="danger" class="text-1x has-error" *ngIf="onRegisterForm.get('fullName').touched && onRegisterForm.get('fullName').hasError('required')">This field is required</p> -->
-   <ion-item>
+   <ion-item class="paymentmode">
     <ion-label>Select Payment Mode </ion-label>
 <ion-select name="paymentmode" [(ngModel)]="bikeuserDetails.paymentmode" [compareWith]="">
     <ion-option>Payment Mode</ion-option>
     <ion-option [value]="30"> 30 % payment </ion-option>
-    <ion-option [value]="advance"> 50% payment </ion-option>
+    <ion-option [value]="50"> 50% payment </ion-option>
   
  </ion-select>
   </ion-item>
@@ -72,7 +72,7 @@
     </form>
 
     <div margin-top>
-      <button ion-button block color="dark" tappable (click)="bikebookingView()" [disabled]="!bikeuserDetailsform.form.valid">
+      <button ion-button block color="dark" tappable (click)="bikebookingView(search)" [disabled]="!bikeuserDetailsform.form.valid">
        Continue Booking
       </button>
          

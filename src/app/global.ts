@@ -7,8 +7,8 @@ export var api = {
 //	endPoint : '',
    //  endPoint : 'https://www.drivekool.com', 
  //  endPoint : 'http://127.0.0.1',                                                                                                                                                                  
-// endPoint : 'http://test.justtrip.in',                                                                                                                                                                  
-endPoint : 'http://localhost/trips/web/app_dev.php',
+ endPoint : 'http://test.justtrip.in',                                                                                                                                                                  
+//endPoint : 'http://localhost/trips/web/app_dev.php',
 		
 //		endPoint : 'http://localhost/api',
         locationDetailUrl : '/api/get-location',
@@ -23,5 +23,6 @@ endPoint : 'http://localhost/trips/web/app_dev.php',
        customerLoginUrl : '/api/get-logindetail',
        signUpUrl : '/api/user-register',
        searchbikesUrl : '/api/get-bikes',
+       bikebookingSubmitUrl : '/api/get-bikebookingsubmit',
 
 };

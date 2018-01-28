@@ -24,7 +24,7 @@
       </div>
       
       <ion-grid padding>
-        <ion-row>
+        <ion-row class="bikedetail">
           <ion-col width-66>
             <h5 ion-text color="dark" class="bold">{{ search.title }}</h5>
             <span *ngFor="let city of cityList">
@@ -36,13 +36,15 @@
               <!-- <h6 ion-text color="primary">{{ search.dayrent * leftdays}} </h6> -->
             </div>
             <div margin-top>
-              <span ion-text>{{ searchbikevalues.pickupdate }} - {{ searchbikevalues.dropdate }}</span>
+              
+              <span ion-text>Pick And Drop Dates<br>
+                {{ searchbikevalues.pickupdate}}-{{ searchbikevalues.dropdate }}</span>
               <br/>
             
                                         
             </div>
             <div margin-top>
-              <span ion-text> {{ finalbikeprice }}</span>
+              <span ion-text>Total Price ₹ {{ finalbikeprice }}</span>
               <br/>
                                        
             </div>
