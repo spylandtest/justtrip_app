@@ -19,12 +19,12 @@
   <div class="trip car card" *ngFor="let packagetitle of packagetitleList" tappable (click)="viewDetail(packagetitle)" margin-bottom>
     <!-- <div class="background border-bottom" [ngStyle]="{'background-image': 'url(' + package.imgPath + ')'}"> -->
         <div class="background border-bottom">
-       <!-- <img src="{{ packagetitle.imgPath }}" class="searchimage" /> -->
-        <img src="assets/img/bike.jpg" class="searchimage" />
+       <img src="{{ packagetitle.imgPath }}" class="searchimage" /> 
+        <!-- <img src="assets/img/bike.jpg" class="searchimage" /> -->
       <div class="background-filter rlt">
         <div class="align-bottom" padding-left padding-right>
           <h6 class="pull-left text-white" ion-text>{{ packagetitle.title }}</h6>
-          <h6 class="pull-right text-white" ion-text>{{ packagetitle.statingPrice | currency:'USD':true }}</h6>
+          <h6 class="pull-right text-white" ion-text>₹{{ packagetitle.statingPrice }}</h6>
           <div class="clear"></div>
         </div>
       </div>

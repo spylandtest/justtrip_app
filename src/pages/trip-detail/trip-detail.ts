@@ -35,6 +35,7 @@ export class TripDetailPage {
     this.packagetitle = navParams.get('packagetitle');
     console.log(this.packagetitle);
     console.log(this.packagetitle.locationUrl);
+    console.log(this.packagetitleinfoList);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Carrent page');
